@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#060608" />
+  <meta name="theme-color" content="#050506" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Kane Mercer — Links</title>
   <link rel="canonical" href="https://kanemercer295.github.io/" />
@@ -40,7 +40,7 @@
   <meta name="twitter:image" content="https://kanemercer295.github.io/images/og.png" />
 
   <!-- Inline SVG favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a06bff'/%3E%3Cstop offset='1' stop-color='%237a4dff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23g)'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.4' cy='0.3' r='0.85'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='0.55' stop-color='%23c4c4cc'/%3E%3Cstop offset='1' stop-color='%238a8a94'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23g)'/%3E%3C/svg%3E" />
 
   <!-- LCP image preload -->
   <link rel="preload" as="image" type="image/webp" href="images/profile.webp" fetchpriority="high" />
@@ -51,15 +51,20 @@
 
   <style>
     :root {
-      --bg: #060608;
-      --bg-soft: #0d0b14;
-      --violet: #7a4dff;
-      --violet-bright: #a06bff;
-      --violet-glow: rgba(140, 90, 255, 0.35);
-      --text: #f4f1ff;
-      --muted: #9b96b4;
+      /* "KANE eclipse" theme — pure black + brushed chrome + a single fire-orange pop.
+         The --violet* tokens are kept by name but now carry the silver/chrome ramp. */
+      --bg: #050506;
+      --bg-soft: #101013;
+      --violet: #8a8a95;          /* steel — gradient base */
+      --violet-bright: #dcdce4;   /* chrome highlight */
+      --violet-glow: rgba(222, 226, 236, 0.32);
+      --fire: #ff5a1f;            /* the 🔥 — live / hot accent */
+      /* brushed-gunmetal fill for filled CTAs — dark enough to keep white text legible */
+      --metal-grad: linear-gradient(135deg, #2a2a30 0%, #585962 50%, #303036 100%);
+      --text: #f2f2f6;
+      --muted: #8e8e98;
       --card: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.09);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,14 +79,12 @@
       content: '';
       position: fixed;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 0%, rgba(122, 77, 255, 0.14), transparent 55%),
-        radial-gradient(ellipse at 80% 100%, rgba(160, 107, 255, 0.08), transparent 55%);
+      background: radial-gradient(46% 32% at 50% -8%, rgba(255, 255, 255, 0.18), transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* AMBIENT DECORATION — drifting orbs + dot grid behind content */
+    /* BACKGROUND — diagonal light streaks over a faint chrome hatch (V4) */
     .bg-decoration {
       position: fixed;
       inset: 0;
@@ -89,31 +92,56 @@
       overflow: hidden;
       pointer-events: none;
     }
-    .bg-orb {
+    .bg-hatch {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      will-change: transform;
-      animation: orb-drift 22s ease-in-out infinite alternate;
-    }
-    .bg-orb-1 { width: 520px; height: 520px; top: -160px; left: -140px; background: rgba(122, 77, 255, 0.42); animation-duration: 24s; }
-    .bg-orb-2 { width: 380px; height: 380px; top: 38%; right: -110px; background: rgba(160, 107, 255, 0.30); animation-duration: 30s; animation-delay: -8s; }
-    .bg-orb-3 { width: 560px; height: 560px; bottom: -180px; left: 28%; background: rgba(255, 44, 90, 0.16); animation-duration: 34s; animation-delay: -14s; }
-    .bg-orb-4 { width: 300px; height: 300px; top: 18%; left: 52%; background: rgba(122, 77, 255, 0.22); animation-duration: 26s; animation-delay: -4s; }
-    @keyframes orb-drift {
-      0%   { transform: translate3d(0, 0, 0) scale(1); }
-      50%  { transform: translate3d(50px, -36px, 0) scale(1.08); }
-      100% { transform: translate3d(-32px, 24px, 0) scale(0.95); }
-    }
-    .bg-grid {
-      position: fixed;
       inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.6), transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.6), transparent 75%);
+      background: repeating-linear-gradient(122deg, transparent 0 44px, rgba(228, 232, 243, 0.05) 44px 45px);
+    }
+    .bg-streak {
+      position: absolute;
+      left: -20vw;
+      width: 150vw;
+      transform: rotate(-26deg);
+      will-change: opacity;
+    }
+    .bg-streak-1 {
+      top: 20%;
+      height: 120px;
+      background: linear-gradient(90deg, transparent, rgba(232, 236, 245, 0.28), transparent);
+      filter: blur(16px);
+      animation: streak-pulse 18s ease-in-out infinite alternate;
+    }
+    .bg-streak-2 {
+      top: 50%;
+      height: 78px;
+      background: linear-gradient(90deg, transparent, rgba(255, 42, 77, 0.36), transparent);
+      filter: blur(13px);
+      animation: streak-pulse-2 22s ease-in-out infinite alternate;
+    }
+    .bg-streak-3 {
+      top: 70%;
+      height: 90px;
+      background: linear-gradient(90deg, transparent, rgba(232, 236, 245, 0.2), transparent);
+      filter: blur(16px);
+      animation: streak-pulse 20s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes streak-pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+    @keyframes streak-pulse-2 { 0% { opacity: 0.45; } 100% { opacity: 0.95; } }
+
+    /* GRAIN — subtle photographic texture over the black */
+    .bg-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+    }
+
+    /* VIGNETTE — cinematic edge darkening */
+    .bg-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 96% 92% at 50% 42%, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
     }
 
     a { color: inherit; }
@@ -172,7 +200,7 @@
       align-items: center;
       gap: 8px;
       padding: 12px 22px;
-      background: linear-gradient(135deg, var(--violet), var(--violet-bright));
+      background: var(--metal-grad);
       color: #fff;
       text-decoration: none;
       border-radius: 999px;
@@ -188,7 +216,7 @@
       color: var(--text);
     }
     .cta-btn.cta-ghost:hover {
-      background: rgba(122, 77, 255, 0.12);
+      background: rgba(220, 224, 234, 0.10);
       border-color: var(--violet);
     }
 
@@ -225,7 +253,7 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 1px dashed rgba(160, 107, 255, 0.4);
+      border: 1px dashed rgba(220, 224, 234, 0.38);
       animation: ring-spin 36s linear infinite;
       pointer-events: none;
       z-index: 1;
@@ -241,14 +269,14 @@
       box-shadow: 0 0 14px var(--violet-glow);
     }
     .hero-avatar-ring::before { top: -5px; left: 50%; transform: translateX(-50%); }
-    .hero-avatar-ring::after { bottom: -5px; left: 50%; transform: translateX(-50%); background: #ff2c5a; box-shadow: 0 0 14px rgba(255, 44, 90, 0.45); }
+    .hero-avatar-ring::after { bottom: -5px; left: 50%; transform: translateX(-50%); background: var(--fire); box-shadow: 0 0 14px rgba(255, 90, 31, 0.45); }
     @keyframes ring-spin {
       to { transform: rotate(360deg); }
     }
     .live-badge {
       position: absolute;
       bottom: 28px; right: 18px;
-      background: #ff2c5a;
+      background: var(--fire);
       color: #fff;
       font-size: 12px;
       font-weight: 700;
@@ -284,7 +312,7 @@
       line-height: 0.9;
       letter-spacing: -0.02em;
       color: var(--text);
-      background: linear-gradient(180deg, #ffffff 0%, #b9a8ff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f3f6 16%, #b9bcc6 48%, #6f7178 78%, #c8cad2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -401,17 +429,17 @@
       transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
     .lane-card:hover {
-      background: rgba(122, 77, 255, 0.08);
+      background: rgba(220, 224, 234, 0.07);
       border-color: var(--violet);
       transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(122, 77, 255, 0.22);
+      box-shadow: 0 14px 40px rgba(150, 158, 178, 0.22);
     }
     .lane-card:focus-visible {
       outline: 2px solid var(--violet-bright);
       outline-offset: 3px;
     }
     .lane-card.lane-library {
-      background: linear-gradient(135deg, var(--violet), var(--violet-bright));
+      background: var(--metal-grad);
       border-color: rgba(255, 255, 255, 0.2);
     }
     .lane-card.lane-library:hover { opacity: 0.94; }
@@ -426,7 +454,7 @@
       color: var(--muted);
     }
     .lane-card.lane-library .lane-eyebrow { color: rgba(255, 255, 255, 0.88); }
-    .lane-card.lane-live.is-live .lane-eyebrow { color: #ff2c5a; }
+    .lane-card.lane-live.is-live .lane-eyebrow { color: var(--fire); }
     .lane-pulse {
       display: inline-block;
       width: 8px; height: 8px;
@@ -435,7 +463,7 @@
       flex-shrink: 0;
     }
     .lane-card.lane-live.is-live .lane-pulse {
-      background: #ff2c5a;
+      background: var(--fire);
       animation: pulse-dot 1.4s ease-in-out infinite;
     }
     .lane-lock { width: 14px; height: 14px; flex-shrink: 0; }
@@ -486,7 +514,7 @@
       transition: background 0.2s ease, border-color 0.2s ease;
     }
     .social-btn:hover {
-      background: rgba(122, 77, 255, 0.12);
+      background: rgba(220, 224, 234, 0.10);
       border-color: var(--violet);
     }
     .social-btn:focus-visible {
@@ -574,7 +602,7 @@
     }
     .schedule-next.is-live .schedule-next-eyebrow,
     .schedule-next.is-live .schedule-next-eyebrow a {
-      color: #ff2c5a;
+      color: var(--fire);
     }
     .schedule-next-eyebrow a {
       color: inherit;
@@ -607,7 +635,7 @@
     }
     .schedule-day.is-today {
       border-color: var(--violet);
-      background: rgba(122, 77, 255, 0.08);
+      background: rgba(220, 224, 234, 0.07);
     }
     .schedule-day-name {
       font-size: 11.5px;
@@ -663,7 +691,7 @@
     }
     .content-tile:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(122, 77, 255, 0.25);
+      box-shadow: 0 12px 32px rgba(150, 158, 178, 0.25);
     }
     .content-tile:focus-visible {
       outline: 2px solid var(--violet-bright);
@@ -706,8 +734,8 @@
       text-transform: uppercase;
       color: var(--text);
     }
-    .content-tag.video { color: #ff8fa3; }
-    .content-tag.photo { color: #c0a8ff; }
+    .content-tag.video { color: #ffb38a; }
+    .content-tag.photo { color: #cdd0da; }
     .content-bottom {
       display: flex;
       align-items: center;
@@ -730,7 +758,7 @@
     }
     .content-lock svg { width: 14px; height: 14px; }
     .content-price {
-      background: linear-gradient(135deg, var(--violet), var(--violet-bright));
+      background: var(--metal-grad);
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 12px;
@@ -930,7 +958,7 @@
     .modal-lock {
       width: 60px; height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--violet), var(--violet-bright));
+      background: var(--metal-grad);
       margin: 0 auto 18px;
       display: flex;
       align-items: center;
@@ -969,7 +997,7 @@
       display: inline-block;
       margin-top: 8px;
       padding: 12px 26px;
-      background: linear-gradient(135deg, var(--violet), var(--violet-bright));
+      background: var(--metal-grad);
       color: #fff !important;
       border-radius: 999px;
       font-weight: 600;
@@ -1012,7 +1040,7 @@
       outline-offset: -2px;
     }
     .sticky-btn.sticky-library {
-      background: linear-gradient(135deg, var(--violet), var(--violet-bright));
+      background: var(--metal-grad);
       color: #fff;
     }
     .sticky-pulse {
@@ -1023,10 +1051,10 @@
       flex-shrink: 0;
     }
     .sticky-btn.is-live .sticky-pulse {
-      background: #ff2c5a;
+      background: var(--fire);
       animation: pulse-dot 1.4s ease-in-out infinite;
     }
-    .sticky-btn.is-live { color: #ff2c5a; }
+    .sticky-btn.is-live { color: var(--fire); }
     .sticky-lock { width: 16px; height: 16px; flex-shrink: 0; }
 
     /* scroll-triggered reveals */
@@ -1067,12 +1095,13 @@
 <body>
 
   <div class="bg-decoration" aria-hidden="true">
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
-    <div class="bg-orb bg-orb-4"></div>
+    <div class="bg-hatch"></div>
+    <div class="bg-streak bg-streak-1"></div>
+    <div class="bg-streak bg-streak-2"></div>
+    <div class="bg-streak bg-streak-3"></div>
+    <div class="bg-vignette"></div>
+    <div class="bg-grain"></div>
   </div>
-  <div class="bg-grid" aria-hidden="true"></div>
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
