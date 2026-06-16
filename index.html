@@ -736,6 +736,32 @@
     }
     .content-tag.video { color: #ffb38a; }
     .content-tag.photo { color: #cdd0da; }
+    /* Badge marking a tile that links to a real, posted set (vs placeholder teasers) */
+    .content-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--fire);
+      color: #04121a;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 12px rgba(34, 211, 238, 0.45);
+    }
+    .content-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #04121a;
+    }
     .content-bottom {
       display: flex;
       align-items: center;
@@ -1351,6 +1377,14 @@
           media.setAttribute('aria-hidden', 'true');
           tile.appendChild(media);
 
+          // Optional badge (e.g. "Real set") — marks tiles backed by a real posted set
+          if (it.badge) {
+            const badge = document.createElement('span');
+            badge.className = 'content-badge';
+            badge.textContent = it.badge;
+            tile.appendChild(badge);
+          }
+
           // Center lock icon
           const centerLock = document.createElement('span');
           centerLock.className = 'content-center-lock';
@@ -1408,7 +1442,10 @@
       const closeBtn = dialog.querySelector('.modal-close');
       const titleSlot = document.getElementById('modal-title');
       const priceSlot = document.getElementById('modal-price');
+      const ctaLink = dialog.querySelector('.modal-cta');
       if (!closeBtn || !titleSlot || !priceSlot) return;
+      // Default OnlyFans destination when an item has no specific post link.
+      const DEFAULT_OF = ctaLink ? ctaLink.getAttribute('href') : '';
       let lastFocused = null;
 
       function openModal(item, triggerEl) {
@@ -1416,6 +1453,8 @@
         titleSlot.textContent = item.caption || 'Locked content';
         const priceNum = Number(item.price) || 0;
         priceSlot.textContent = '$' + priceNum;
+        // Deep-link to the item's specific post if provided, else the profile.
+        if (ctaLink) ctaLink.href = validateUrl(item.link) || DEFAULT_OF;
         document.body.style.overflow = 'hidden';
         dialog.showModal();
       }
