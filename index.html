@@ -51,20 +51,20 @@
 
   <style>
     :root {
-      /* "KANE eclipse" theme — pure black + brushed chrome + a single fire-orange pop.
-         The --violet* tokens are kept by name but now carry the silver/chrome ramp. */
-      --bg: #050506;
-      --bg-soft: #101013;
-      --violet: #8a8a95;          /* steel — gradient base */
-      --violet-bright: #dcdce4;   /* chrome highlight */
-      --violet-glow: rgba(222, 226, 236, 0.32);
-      --fire: #ff5a1f;            /* the 🔥 — live / hot accent */
+      /* "Cobalt Midnight" theme — navy-black + electric-blue chrome + a cyan LIVE pop.
+         The --violet* tokens are kept by name but now carry the cobalt/cyan ramp. */
+      --bg: #040810;
+      --bg-soft: #0a1322;
+      --violet: #4f7fb5;          /* steel — gradient base */
+      --violet-bright: #bfe3ff;   /* chrome highlight */
+      --violet-glow: rgba(34, 211, 238, 0.32);
+      --fire: #22d3ee;            /* the 🔥 — live / hot accent */
       /* brushed-gunmetal fill for filled CTAs — dark enough to keep white text legible */
-      --metal-grad: linear-gradient(135deg, #2a2a30 0%, #585962 50%, #303036 100%);
-      --text: #f2f2f6;
-      --muted: #8e8e98;
-      --card: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.09);
+      --metal-grad: linear-gradient(135deg, #122a44 0%, #2e5c8a 50%, #122a44 100%);
+      --text: #eef6fb;
+      --muted: #8fa6c0;
+      --card: rgba(80, 160, 230, 0.05);
+      --border: rgba(120, 180, 240, 0.12);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,7 +79,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(46% 32% at 50% -8%, rgba(255, 255, 255, 0.18), transparent 60%);
+      background: radial-gradient(46% 32% at 50% -8%, rgba(90, 180, 255, 0.20), transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
@@ -95,7 +95,7 @@
     .bg-hatch {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(122deg, transparent 0 44px, rgba(228, 232, 243, 0.05) 44px 45px);
+      background: repeating-linear-gradient(122deg, transparent 0 44px, rgba(150, 200, 255, 0.05) 44px 45px);
     }
     .bg-streak {
       position: absolute;
@@ -107,21 +107,21 @@
     .bg-streak-1 {
       top: 20%;
       height: 120px;
-      background: linear-gradient(90deg, transparent, rgba(232, 236, 245, 0.28), transparent);
+      background: linear-gradient(90deg, transparent, rgba(120, 190, 255, 0.30), transparent);
       filter: blur(16px);
       animation: streak-pulse 18s ease-in-out infinite alternate;
     }
     .bg-streak-2 {
       top: 50%;
       height: 78px;
-      background: linear-gradient(90deg, transparent, rgba(255, 42, 77, 0.36), transparent);
+      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.40), transparent);
       filter: blur(13px);
       animation: streak-pulse-2 22s ease-in-out infinite alternate;
     }
     .bg-streak-3 {
       top: 70%;
       height: 90px;
-      background: linear-gradient(90deg, transparent, rgba(232, 236, 245, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(150, 200, 255, 0.20), transparent);
       filter: blur(16px);
       animation: streak-pulse 20s ease-in-out infinite alternate-reverse;
     }
