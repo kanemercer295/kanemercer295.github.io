@@ -314,8 +314,8 @@
       font-size: clamp(48px, 9vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.02em;
-      color: #e01e37;
-      text-shadow: 0 0 10px rgba(224, 30, 55, 0.55), 0 0 28px rgba(255, 31, 31, 0.45);
+      color: #e8475a;
+      text-shadow: 0 1px 18px rgba(224, 30, 55, 0.20);
       margin: 12px 0;
       text-transform: uppercase;
     }
@@ -953,6 +953,12 @@
       width: calc(100% - 2rem);
       border-radius: 24px;
       overflow: visible;
+      /* robustly centered in the viewport (top-layer dialog) */
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+      max-height: calc(100dvh - 2rem);
     }
     .modal::backdrop {
       background: rgba(6, 6, 8, 0.85);
@@ -974,8 +980,9 @@
       padding: 36px 30px;
       text-align: center;
       position: relative;
-      max-height: 90vh;
+      max-height: calc(100dvh - 2rem);
       overflow-y: auto;
+      overflow-x: hidden;
     }
     .modal-close {
       position: absolute;
@@ -1049,104 +1056,198 @@
       font-size: 14px;
     }
 
-    /* MODAL ENGAGE — unblurred preview + like + comments (client-side, per-device) */
+    /* MODAL ENGAGE — styled as an Instagram post (header / image / actions / likes / comments / composer) */
     .modal-engage {
-      margin: 6px 0 20px;
+      /* full-bleed to the modal-inner padding edges (inner padding is 30px) */
+      margin: 16px -30px 6px;
       text-align: left;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
+    .ig-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+    }
+    .ig-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      padding: 2px;
+      background: linear-gradient(45deg, #ffb627, #e01e37);
+      flex-shrink: 0;
+    }
+    .ig-user { font-size: 13.5px; font-weight: 700; color: var(--text); }
+    .ig-head-more { margin-left: auto; color: var(--text); font-size: 18px; line-height: 1; letter-spacing: 1px; }
     .modal-preview {
       width: 100%;
       display: block;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      max-height: 360px;
+      border: none;
+      border-radius: 0;
+      max-height: 380px;
       object-fit: cover;
       background: var(--bg);
     }
-    .modal-like-row {
+    .ig-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin: 14px 0 6px;
+      gap: 16px;
+      padding: 11px 14px 3px;
     }
-    .modal-like {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
+    .ig-action {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
       color: var(--text);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 600;
       cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      display: inline-flex;
+      line-height: 0;
+      transition: color 0.15s ease, transform 0.15s ease;
     }
-    .modal-like:hover { background: rgba(255, 255, 255, 0.09); }
-    .modal-like:focus-visible { outline: 2px solid var(--violet-bright); outline-offset: 2px; }
-    .modal-like .heart {
-      width: 18px; height: 18px;
+    .ig-action svg {
+      width: 26px; height: 26px;
       fill: none;
       stroke: currentColor;
-      stroke-width: 2;
-      transition: transform 0.18s ease;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-    .modal-like[aria-pressed="true"] {
-      color: var(--fire);
-      border-color: var(--fire);
-      background: rgba(224, 30, 55, 0.12);
+    .ig-action:hover { color: var(--muted); }
+    .ig-action:active { transform: scale(0.88); }
+    .ig-action:focus-visible { outline: 2px solid var(--violet-bright); outline-offset: 3px; border-radius: 6px; }
+    .ig-action.ig-save { margin-left: auto; }
+    .ig-like[aria-pressed="true"] { color: var(--fire); }
+    .ig-like[aria-pressed="true"] svg { fill: var(--fire); stroke: var(--fire); animation: ig-pop 0.32s ease; }
+    .ig-save[aria-pressed="true"] svg { fill: currentColor; }
+    @keyframes ig-pop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.28); }
+      100% { transform: scale(1); }
     }
-    .modal-like[aria-pressed="true"] .heart { fill: var(--fire); stroke: var(--fire); transform: scale(1.12); }
-    .modal-like-hint { color: var(--muted); font-size: 12px; }
+    .ig-likes {
+      padding: 3px 14px 0;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .ig-caption {
+      padding: 4px 14px 2px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: var(--text);
+      word-break: break-word;
+    }
+    .ig-cap-user { font-weight: 700; margin-right: 6px; }
     .comment-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      max-height: 132px;
+      gap: 11px;
+      max-height: 150px;
       overflow-y: auto;
-      margin: 12px 0;
+      padding: 9px 14px;
     }
     .comment-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 11px;
-      font-size: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 13.5px;
       line-height: 1.4;
       color: var(--text);
       word-break: break-word;
     }
-    .comment-empty { color: var(--muted); font-size: 12.5px; margin: 10px 0; }
-    .comment-form { display: flex; gap: 8px; margin-top: 6px; }
+    .comment-user { font-weight: 700; flex-shrink: 0; }
+    .comment-text { flex: 1; }
+    .comment-heart {
+      width: 12px; height: 12px;
+      margin-top: 3px;
+      fill: none;
+      stroke: var(--muted);
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+    .comment-empty { color: var(--muted); font-size: 13px; padding: 4px 14px 8px; }
+    .comment-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-top: 1px solid var(--border);
+    }
     .comment-input {
       flex: 1;
       min-width: 0;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
+      background: none;
+      border: none;
       color: var(--text);
-      padding: 10px 14px;
+      padding: 4px 0;
       font: inherit;
-      font-size: 13px;
+      font-size: 13.5px;
     }
     .comment-input::placeholder { color: var(--muted); }
-    .comment-input:focus-visible { outline: 2px solid var(--violet-bright); outline-offset: 1px; }
+    .comment-input:focus-visible { outline: none; }
     .comment-post {
-      background: var(--violet-bright);
-      color: #2a0307;
+      background: none;
+      color: var(--violet-bright);
       border: none;
-      border-radius: 999px;
-      padding: 0 16px;
+      padding: 0;
       font: inherit;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       cursor: pointer;
+      opacity: 0.4;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
     }
-    .comment-post:hover { filter: brightness(1.05); }
-    .comment-post:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-    .modal-engage-note { color: var(--muted); font-size: 11px; margin-top: 8px; text-align: center; }
+    .comment-post.is-active { opacity: 1; pointer-events: auto; }
+    .comment-post:focus-visible { outline: 2px solid var(--violet-bright); outline-offset: 2px; border-radius: 4px; }
+    .modal-engage-note { color: var(--muted); font-size: 11px; padding: 2px 14px 11px; text-align: left; }
+    .ig-media { display: block; }
+
+    /* WIDE LAYOUT — Instagram desktop post: image left, header + comments right */
+    @media (min-width: 760px) {
+      .modal { max-width: 880px; }
+      /* keep the paywall copy tidy & centered inside the now-wide modal */
+      .modal-inner > h3,
+      .modal-inner > .price,
+      .modal-inner > .price-note,
+      .modal-inner > p {
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .modal-engage {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-rows: auto 1fr;
+        align-items: stretch;
+      }
+      .ig-head { grid-column: 2; grid-row: 1; }
+      .ig-media {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        border-right: 1px solid var(--border);
+        min-height: 0;
+      }
+      .ig-media .modal-preview {
+        height: 100%;
+        max-height: none;
+        min-height: 440px;
+      }
+      .ig-body {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      /* let the comment list grow to fill the right column */
+      .ig-body .comment-list {
+        flex: 1 1 auto;
+        max-height: none;
+      }
+    }
 
     /* STICKY MOBILE CTA */
     .sticky-cta {
@@ -1409,6 +1510,11 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
   </template>
 
+  <!-- Small comment-like heart — cloned per comment row (Instagram style). Static markup. -->
+  <template id="comment-heart-tpl">
+    <svg class="comment-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </template>
+
   <!-- MODAL (paywall teaser) -->
   <dialog id="tile-modal" class="modal" aria-labelledby="modal-title">
     <div class="modal-inner">
@@ -1420,22 +1526,40 @@
       <div class="price" id="modal-price">$0</div>
       <div class="price-note">PPV tip price · pay on OnlyFans</div>
 
-      <!-- Engagement section: unblurred preview + like + comments (client-side, per-device) -->
+      <!-- Engagement section: Instagram-style post card (client-side, per-device) -->
       <div class="modal-engage" id="modal-engage" hidden>
-        <img id="modal-preview" class="modal-preview" alt="" />
-        <div class="modal-like-row">
-          <button type="button" id="modal-like" class="modal-like" aria-pressed="false">
-            <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span id="modal-like-count">0</span>
-          </button>
-          <span class="modal-like-hint">Like this preview</span>
+        <div class="ig-head">
+          <img class="ig-avatar" src="images/profile.webp" alt="" aria-hidden="true" />
+          <span class="ig-user">kanemercer295</span>
+          <span class="ig-head-more" aria-hidden="true">⋯</span>
         </div>
-        <div class="comment-list" id="modal-comment-list"></div>
-        <form class="comment-form" id="modal-comment-form">
-          <input type="text" class="comment-input" id="modal-comment-input" maxlength="140" placeholder="Add a comment…" aria-label="Add a comment" autocomplete="off" />
-          <button type="submit" class="comment-post">Post</button>
-        </form>
-        <p class="modal-engage-note">Likes &amp; comments are saved on your device.</p>
+        <div class="ig-media">
+          <img id="modal-preview" class="modal-preview" alt="" />
+        </div>
+        <div class="ig-body">
+          <div class="ig-actions">
+            <button type="button" id="modal-like" class="ig-action ig-like" aria-pressed="false" aria-label="Like">
+              <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <button type="button" id="modal-comment-btn" class="ig-action" aria-label="Comment">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+            </button>
+            <a href="https://x.com/kanemercer295" target="_blank" rel="noopener" class="ig-action" aria-label="Share">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </a>
+            <button type="button" id="modal-save" class="ig-action ig-save" aria-pressed="false" aria-label="Save">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+          </div>
+          <div class="ig-likes"><span id="modal-like-count">0</span> likes</div>
+          <p class="ig-caption" id="modal-ig-caption"></p>
+          <div class="comment-list" id="modal-comment-list"></div>
+          <form class="comment-form" id="modal-comment-form">
+            <input type="text" class="comment-input" id="modal-comment-input" maxlength="140" placeholder="Add a comment…" aria-label="Add a comment" autocomplete="off" />
+            <button type="submit" class="comment-post">Post</button>
+          </form>
+          <p class="modal-engage-note">Likes &amp; comments are saved on your device</p>
+        </div>
       </div>
 
       <p>Subscribe (or DM if already subbed) and send this tip — I'll unlock the set in your inbox within 24 hours.</p>
@@ -1593,6 +1717,11 @@
       const commentList = document.getElementById('modal-comment-list');
       const commentForm = document.getElementById('modal-comment-form');
       const commentInput = document.getElementById('modal-comment-input');
+      const saveBtn = document.getElementById('modal-save');
+      const commentBtn = document.getElementById('modal-comment-btn');
+      const captionEl = document.getElementById('modal-ig-caption');
+      const postBtn = commentForm ? commentForm.querySelector('.comment-post') : null;
+      const heartTpl = document.getElementById('comment-heart-tpl');
       let currentItem = null;
 
       // Per-device engagement store (no backend) — keyed by media path.
@@ -1606,14 +1735,18 @@
       function recordFor(item) {
         const store = loadEngage();
         const key = item.media || item.caption || 'item';
-        if (!store[key] || typeof store[key] !== 'object') store[key] = { liked: false, comments: [] };
+        if (!store[key] || typeof store[key] !== 'object') store[key] = { liked: false, saved: false, comments: [] };
         if (!Array.isArray(store[key].comments)) store[key].comments = [];
         return { store, key, rec: store[key] };
       }
       function renderLike(rec) {
         const liked = !!rec.liked;
         if (likeBtn) likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+        // Instagram-style "N likes" — bump the count when the viewer likes it.
         if (likeCount) likeCount.textContent = String(liked ? 1 : 0);
+      }
+      function renderSaved(rec) {
+        if (saveBtn) saveBtn.setAttribute('aria-pressed', rec.saved ? 'true' : 'false');
       }
       function renderComments(rec) {
         if (!commentList) return;
@@ -1622,14 +1755,28 @@
         if (!comments.length) {
           const empty = document.createElement('p');
           empty.className = 'comment-empty';
-          empty.textContent = 'Be the first to comment.';
+          empty.textContent = 'No comments yet — be the first.';
           commentList.appendChild(empty);
           return;
         }
         comments.forEach((text) => {
           const row = document.createElement('div');
           row.className = 'comment-item';
-          row.textContent = text;            // textContent only — no innerHTML on user input
+
+          const user = document.createElement('span');
+          user.className = 'comment-user';
+          user.textContent = 'you';
+          row.appendChild(user);
+
+          const body = document.createElement('span');
+          body.className = 'comment-text';
+          body.textContent = text;           // textContent only — no innerHTML on user input
+          row.appendChild(body);
+
+          if (heartTpl && heartTpl.content.firstElementChild) {
+            row.appendChild(heartTpl.content.firstElementChild.cloneNode(true));
+          }
+
           commentList.appendChild(row);
         });
       }
@@ -1651,7 +1798,23 @@
             previewImg.alt = item.caption ? ('Preview — ' + item.caption) : 'Preview';
             const { rec } = recordFor(item);
             renderLike(rec);
+            renderSaved(rec);
             renderComments(rec);
+
+            // IG-style caption: bold handle + the set caption.
+            if (captionEl) {
+              while (captionEl.firstChild) captionEl.removeChild(captionEl.firstChild);
+              const capUser = document.createElement('span');
+              capUser.className = 'ig-cap-user';
+              capUser.textContent = 'kanemercer295';
+              captionEl.appendChild(capUser);
+              captionEl.appendChild(document.createTextNode(item.caption || 'New drop 🔥'));
+            }
+
+            // Reset the composer each time the modal opens.
+            if (commentInput) commentInput.value = '';
+            if (postBtn) postBtn.classList.remove('is-active');
+
             engageWrap.hidden = false;
           } else {
             engageWrap.hidden = true;
@@ -1671,6 +1834,24 @@
           renderLike(rec);
         });
       }
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          if (!currentItem) return;
+          const { store, rec } = recordFor(currentItem);
+          rec.saved = !rec.saved;
+          saveEngage(store);
+          renderSaved(rec);
+        });
+      }
+      if (commentBtn && commentInput) {
+        commentBtn.addEventListener('click', () => commentInput.focus());
+      }
+      // Enable the "Post" button only when there's text (Instagram behavior).
+      if (commentInput && postBtn) {
+        commentInput.addEventListener('input', () => {
+          postBtn.classList.toggle('is-active', commentInput.value.trim().length > 0);
+        });
+      }
       if (commentForm && commentInput) {
         commentForm.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -1681,6 +1862,7 @@
           rec.comments.push(text);
           saveEngage(store);
           commentInput.value = '';
+          if (postBtn) postBtn.classList.remove('is-active');
           renderComments(rec);
           commentList.scrollTop = commentList.scrollHeight;
         });
