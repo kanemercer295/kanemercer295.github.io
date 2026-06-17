@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#050506" />
+  <meta name="theme-color" content="#150709" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Kane Mercer — Links</title>
   <link rel="canonical" href="https://kanemercer295.github.io/" />
@@ -40,7 +40,7 @@
   <meta name="twitter:image" content="https://kanemercer295.github.io/images/og.png" />
 
   <!-- Inline SVG favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.4' cy='0.3' r='0.85'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='0.55' stop-color='%23c4c4cc'/%3E%3Cstop offset='1' stop-color='%238a8a94'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23g)'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.4' cy='0.3' r='0.85'%3E%3Cstop offset='0' stop-color='%23ff8a99'/%3E%3Cstop offset='0.55' stop-color='%23e01e37'/%3E%3Cstop offset='1' stop-color='%237a0f1e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23g)'/%3E%3C/svg%3E" />
 
   <!-- LCP image preload -->
   <link rel="preload" as="image" type="image/webp" href="images/profile.webp" fetchpriority="high" />
@@ -51,20 +51,23 @@
 
   <style>
     :root {
-      /* "Cobalt Midnight" theme — navy-black + electric-blue chrome + a cyan LIVE pop.
-         The --violet* tokens are kept by name but now carry the cobalt/cyan ramp. */
-      --bg: #040810;
-      --bg-soft: #0a1322;
-      --violet: #4f7fb5;          /* steel — gradient base */
-      --violet-bright: #bfe3ff;   /* chrome highlight */
-      --violet-glow: rgba(34, 211, 238, 0.32);
-      --fire: #22d3ee;            /* the 🔥 — live / hot accent */
-      /* brushed-gunmetal fill for filled CTAs — dark enough to keep white text legible */
-      --metal-grad: linear-gradient(135deg, #122a44 0%, #2e5c8a 50%, #122a44 100%);
-      --text: #eef6fb;
-      --muted: #8fa6c0;
-      --card: rgba(80, 160, 230, 0.05);
-      --border: rgba(120, 180, 240, 0.12);
+      /* "Crimson Heat" theme — crimson-black + crimson frame + gold glowing labels.
+         Matches the Chaturbate crimson bio (#e01e37 + #ffb627). The --violet* tokens
+         are kept by name for compatibility but now carry the crimson/pink ramp. */
+      --bg: #150709;
+      --bg-soft: #1d0c0f;
+      --violet: #b3182e;          /* crimson — gradient/border base */
+      --violet-bright: #ff6b7d;   /* bright crimson-pink — links, numbers, accents */
+      --violet-glow: rgba(224, 30, 55, 0.35);
+      --fire: #ff2740;            /* the 🔥 — live / hot accent */
+      --gold: #ffb627;            /* gold — section eyebrows / hot labels */
+      --gold-glow: rgba(255, 158, 0, 0.55);
+      /* crimson fill for filled CTAs — bright midpoint, dark edges keep white text legible */
+      --metal-grad: linear-gradient(135deg, #7a0f1e 0%, #e01e37 50%, #7a0f1e 100%);
+      --text: #f6eef0;
+      --muted: #c2a0a6;
+      --card: rgba(224, 30, 55, 0.05);
+      --border: rgba(224, 30, 55, 0.18);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,7 +82,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(46% 32% at 50% -8%, rgba(90, 180, 255, 0.20), transparent 60%);
+      background: radial-gradient(46% 32% at 50% -8%, rgba(224, 30, 55, 0.20), transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
@@ -95,7 +98,7 @@
     .bg-hatch {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(122deg, transparent 0 44px, rgba(150, 200, 255, 0.05) 44px 45px);
+      background: repeating-linear-gradient(122deg, transparent 0 44px, rgba(224, 30, 55, 0.05) 44px 45px);
     }
     .bg-streak {
       position: absolute;
@@ -107,21 +110,21 @@
     .bg-streak-1 {
       top: 20%;
       height: 120px;
-      background: linear-gradient(90deg, transparent, rgba(120, 190, 255, 0.30), transparent);
+      background: linear-gradient(90deg, transparent, rgba(224, 30, 55, 0.32), transparent);
       filter: blur(16px);
       animation: streak-pulse 18s ease-in-out infinite alternate;
     }
     .bg-streak-2 {
       top: 50%;
       height: 78px;
-      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.40), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 182, 39, 0.30), transparent);
       filter: blur(13px);
       animation: streak-pulse-2 22s ease-in-out infinite alternate;
     }
     .bg-streak-3 {
       top: 70%;
       height: 90px;
-      background: linear-gradient(90deg, transparent, rgba(150, 200, 255, 0.20), transparent);
+      background: linear-gradient(90deg, transparent, rgba(224, 30, 55, 0.20), transparent);
       filter: blur(16px);
       animation: streak-pulse 20s ease-in-out infinite alternate-reverse;
     }
@@ -269,7 +272,7 @@
       box-shadow: 0 0 14px var(--violet-glow);
     }
     .hero-avatar-ring::before { top: -5px; left: 50%; transform: translateX(-50%); }
-    .hero-avatar-ring::after { bottom: -5px; left: 50%; transform: translateX(-50%); background: var(--fire); box-shadow: 0 0 14px rgba(255, 90, 31, 0.45); }
+    .hero-avatar-ring::after { bottom: -5px; left: 50%; transform: translateX(-50%); background: var(--gold); box-shadow: 0 0 14px var(--gold-glow); }
     @keyframes ring-spin {
       to { transform: rotate(360deg); }
     }
@@ -311,11 +314,8 @@
       font-size: clamp(48px, 9vw, 120px);
       line-height: 0.9;
       letter-spacing: -0.02em;
-      color: var(--text);
-      background: linear-gradient(180deg, #ffffff 0%, #f2f3f6 16%, #b9bcc6 48%, #6f7178 78%, #c8cad2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #e01e37;
+      text-shadow: 0 0 10px rgba(224, 30, 55, 0.55), 0 0 28px rgba(255, 31, 31, 0.45);
       margin: 12px 0;
       text-transform: uppercase;
     }
@@ -550,22 +550,24 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
-      color: var(--violet-bright);
+      color: var(--gold);
       font-size: 13px;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       margin-bottom: 12px;
       text-align: center;
+      text-shadow: 0 0 8px var(--gold-glow);
     }
     .section-eyebrow::before,
     .section-eyebrow::after {
       content: '';
       width: 40px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--violet-bright));
+      background: linear-gradient(90deg, transparent, var(--gold));
     }
     .section-eyebrow::after {
-      background: linear-gradient(90deg, var(--violet-bright), transparent);
+      background: linear-gradient(90deg, var(--gold), transparent);
     }
     .section-title {
       font-family: 'Archivo Black', sans-serif;
@@ -748,8 +750,8 @@
       text-transform: uppercase;
       color: var(--text);
     }
-    .content-tag.video { color: #ffb38a; }
-    .content-tag.photo { color: #cdd0da; }
+    .content-tag.video { color: #ffce8a; }
+    .content-tag.photo { color: #ff9aa6; }
     /* Badge marking a tile that links to a real, posted set (vs placeholder teasers) */
     .content-badge {
       position: absolute;
@@ -760,21 +762,21 @@
       align-items: center;
       gap: 5px;
       background: var(--fire);
-      color: #04121a;
+      color: #2a0307;
       padding: 5px 10px;
       border-radius: 999px;
       font-size: 10.5px;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      box-shadow: 0 2px 12px rgba(34, 211, 238, 0.45);
+      box-shadow: 0 2px 12px rgba(224, 30, 55, 0.45);
     }
     .content-badge::before {
       content: '';
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #04121a;
+      background: #2a0307;
     }
     .content-bottom {
       display: flex;
@@ -972,6 +974,8 @@
       padding: 36px 30px;
       text-align: center;
       position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .modal-close {
       position: absolute;
@@ -1044,6 +1048,105 @@
       text-decoration: none;
       font-size: 14px;
     }
+
+    /* MODAL ENGAGE — unblurred preview + like + comments (client-side, per-device) */
+    .modal-engage {
+      margin: 6px 0 20px;
+      text-align: left;
+    }
+    .modal-preview {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      max-height: 360px;
+      object-fit: cover;
+      background: var(--bg);
+    }
+    .modal-like-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px 0 6px;
+    }
+    .modal-like {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .modal-like:hover { background: rgba(255, 255, 255, 0.09); }
+    .modal-like:focus-visible { outline: 2px solid var(--violet-bright); outline-offset: 2px; }
+    .modal-like .heart {
+      width: 18px; height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      transition: transform 0.18s ease;
+    }
+    .modal-like[aria-pressed="true"] {
+      color: var(--fire);
+      border-color: var(--fire);
+      background: rgba(224, 30, 55, 0.12);
+    }
+    .modal-like[aria-pressed="true"] .heart { fill: var(--fire); stroke: var(--fire); transform: scale(1.12); }
+    .modal-like-hint { color: var(--muted); font-size: 12px; }
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 132px;
+      overflow-y: auto;
+      margin: 12px 0;
+    }
+    .comment-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--text);
+      word-break: break-word;
+    }
+    .comment-empty { color: var(--muted); font-size: 12.5px; margin: 10px 0; }
+    .comment-form { display: flex; gap: 8px; margin-top: 6px; }
+    .comment-input {
+      flex: 1;
+      min-width: 0;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      padding: 10px 14px;
+      font: inherit;
+      font-size: 13px;
+    }
+    .comment-input::placeholder { color: var(--muted); }
+    .comment-input:focus-visible { outline: 2px solid var(--violet-bright); outline-offset: 1px; }
+    .comment-post {
+      background: var(--violet-bright);
+      color: #2a0307;
+      border: none;
+      border-radius: 999px;
+      padding: 0 16px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .comment-post:hover { filter: brightness(1.05); }
+    .comment-post:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+    .modal-engage-note { color: var(--muted); font-size: 11px; margin-top: 8px; text-align: center; }
 
     /* STICKY MOBILE CTA */
     .sticky-cta {
@@ -1316,6 +1419,25 @@
       <h3 id="modal-title">Locked content</h3>
       <div class="price" id="modal-price">$0</div>
       <div class="price-note">PPV tip price · pay on OnlyFans</div>
+
+      <!-- Engagement section: unblurred preview + like + comments (client-side, per-device) -->
+      <div class="modal-engage" id="modal-engage" hidden>
+        <img id="modal-preview" class="modal-preview" alt="" />
+        <div class="modal-like-row">
+          <button type="button" id="modal-like" class="modal-like" aria-pressed="false">
+            <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span id="modal-like-count">0</span>
+          </button>
+          <span class="modal-like-hint">Like this preview</span>
+        </div>
+        <div class="comment-list" id="modal-comment-list"></div>
+        <form class="comment-form" id="modal-comment-form">
+          <input type="text" class="comment-input" id="modal-comment-input" maxlength="140" placeholder="Add a comment…" aria-label="Add a comment" autocomplete="off" />
+          <button type="submit" class="comment-post">Post</button>
+        </form>
+        <p class="modal-engage-note">Likes &amp; comments are saved on your device.</p>
+      </div>
+
       <p>Subscribe (or DM if already subbed) and send this tip — I'll unlock the set in your inbox within 24 hours.</p>
       <a href="https://onlyfans.com/kanemercer199" target="_blank" rel="noopener" class="modal-cta">Open on OnlyFans →</a>
       <p style="margin-top: 18px; font-size: 13px;">Questions? DM <a href="https://x.com/kanemercer295" target="_blank" rel="noopener">@kanemercer295</a>.</p>
@@ -1463,15 +1585,105 @@
       const DEFAULT_OF = ctaLink ? ctaLink.getAttribute('href') : '';
       let lastFocused = null;
 
+      // Engagement section elements (unblurred preview + like + comments).
+      const engageWrap = document.getElementById('modal-engage');
+      const previewImg = document.getElementById('modal-preview');
+      const likeBtn = document.getElementById('modal-like');
+      const likeCount = document.getElementById('modal-like-count');
+      const commentList = document.getElementById('modal-comment-list');
+      const commentForm = document.getElementById('modal-comment-form');
+      const commentInput = document.getElementById('modal-comment-input');
+      let currentItem = null;
+
+      // Per-device engagement store (no backend) — keyed by media path.
+      const ENGAGE_KEY = 'plp_engage_v1';
+      function loadEngage() {
+        try { return JSON.parse(localStorage.getItem(ENGAGE_KEY)) || {}; } catch { return {}; }
+      }
+      function saveEngage(store) {
+        try { localStorage.setItem(ENGAGE_KEY, JSON.stringify(store)); } catch {}
+      }
+      function recordFor(item) {
+        const store = loadEngage();
+        const key = item.media || item.caption || 'item';
+        if (!store[key] || typeof store[key] !== 'object') store[key] = { liked: false, comments: [] };
+        if (!Array.isArray(store[key].comments)) store[key].comments = [];
+        return { store, key, rec: store[key] };
+      }
+      function renderLike(rec) {
+        const liked = !!rec.liked;
+        if (likeBtn) likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+        if (likeCount) likeCount.textContent = String(liked ? 1 : 0);
+      }
+      function renderComments(rec) {
+        if (!commentList) return;
+        while (commentList.firstChild) commentList.removeChild(commentList.firstChild);
+        const comments = rec.comments || [];
+        if (!comments.length) {
+          const empty = document.createElement('p');
+          empty.className = 'comment-empty';
+          empty.textContent = 'Be the first to comment.';
+          commentList.appendChild(empty);
+          return;
+        }
+        comments.forEach((text) => {
+          const row = document.createElement('div');
+          row.className = 'comment-item';
+          row.textContent = text;            // textContent only — no innerHTML on user input
+          commentList.appendChild(row);
+        });
+      }
+
       function openModal(item, triggerEl) {
         lastFocused = triggerEl;
+        currentItem = item;
         titleSlot.textContent = item.caption || 'Locked content';
         const priceNum = Number(item.price) || 0;
         priceSlot.textContent = '$' + priceNum;
         // Deep-link to the item's specific post if provided, else the profile.
         if (ctaLink) ctaLink.href = validateUrl(item.link) || DEFAULT_OF;
+
+        // Engagement: show unblurred preview + this item's like/comment state.
+        if (engageWrap && previewImg) {
+          const src = validateUrl(item.media);
+          if (src) {
+            previewImg.src = src;
+            previewImg.alt = item.caption ? ('Preview — ' + item.caption) : 'Preview';
+            const { rec } = recordFor(item);
+            renderLike(rec);
+            renderComments(rec);
+            engageWrap.hidden = false;
+          } else {
+            engageWrap.hidden = true;
+          }
+        }
+
         document.body.style.overflow = 'hidden';
         dialog.showModal();
+      }
+
+      if (likeBtn) {
+        likeBtn.addEventListener('click', () => {
+          if (!currentItem) return;
+          const { store, rec } = recordFor(currentItem);
+          rec.liked = !rec.liked;
+          saveEngage(store);
+          renderLike(rec);
+        });
+      }
+      if (commentForm && commentInput) {
+        commentForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (!currentItem) return;
+          const text = commentInput.value.trim();
+          if (!text) return;
+          const { store, rec } = recordFor(currentItem);
+          rec.comments.push(text);
+          saveEngage(store);
+          commentInput.value = '';
+          renderComments(rec);
+          commentList.scrollTop = commentList.scrollHeight;
+        });
       }
 
       grid.addEventListener('click', (e) => {
